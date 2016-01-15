@@ -4,53 +4,90 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
   </head>
-  <body ng-app="directoryApp">
-    <div class="container">
-      <div class="row">
+  <body ng-app="directoryApp" style="background-color: #f7e2cf">
+    <div class="row" id="header">
         <h1>UF Directory App</h1>
-      </div>
+    </div>
+    <div class="container" style="color: #00529b">
       <div class="row" ng-controller="ListingsController">
         <div class="col-md-6">
           <div class="input-group" id="searchBar">
             <!-- 
-
                 Implement a way to filter through listings using the search bar 
-
+                
+                - I added the ng-model to bind to query filter, and then added the filter to the ng-repeat directive
               -->
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" ng-model="query">
           </div>
           <div class="tableWrapper">
             <table class="table table-striped table-hover">
               <tr>
                 <th>Code</th>
                 <th>Building Name</th>
-                <th></th>
               </tr>
+              <tr ng-repeat="listing in listings | filter:query" ng-click="showDetails(listing)">
               <!-- 
 
                   Fill in the rest of the table:
                       * populate the rows with the code and name of each listing
                       * include a way to remove individual listings
 
+                   - I added the ng-repeat directive to the entire table row, and then I set table data per row to equal code and building name
+                   - Added a button at end to show details
                 --> 
+                <td>{{listing.code}}</td>
+                <td>{{listing.name}}</td>
+              </tr>
             </table>
           </div>
           <!-- 
-
-              Write an HTML form that adds new listings to the directory 
-
+              
             -->
+          <button ng-show="!showAdd" ng-click="addListing()">Add Listing</button>
+            <div class="form" ng-show="showAdd">
+              <h2>Add Listing</h2>
+              <form name="listingForm">
+                <p>
+                  Code: &nbsp &nbsp
+                  <input type="text" placeholder="Code" name="code" ng-model="newItem.code" required/>
+                  <span class="required" ng-show="!listingForm.code.$valid">*Required</span>
+                </p>
+                <p>
+                  Name: &nbsp &nbsp
+                  <input type="text" placeholder="Name" name="name" ng-model="newItem.name" required/>
+                  <span class="required" ng-show="!listingForm.name.$valid">*Required</span>
+                </p>
+                <p>
+                  Latitude: 
+                  <input type="text" placeholder="Latitude" ng-model="newItem.coordinates.longitude"/>
+                  &nbsp Longitude: 
+                  <input type="text" placeholder="Longitude" ng-model="newItem.coordinates.longitude"/>
+                </p>
+                <p>
+                  Address: 
+                  <input type="text" placeholder="Address" ng-model="newItem.address"/>
+                </p>
+                <button ng-disabled="!listingForm.$valid" ng-click="addListing()">Add</button>
+              </form>
+            </div>
         </div>
         <div class="col-md-6">
-          <div class="jumbotron">
+          <div class="jumbotron" ng-show="showInfo">
             <h2>Detailed Information</h2>
+            <div>
             <!-- 
 
               Include a way to display detailed information about an individual listing:
                    * consider how to use ng-click within the the table to implement this feature
-
+                  -added constraint to show info only when clicked
+                  -added delete button
              -->
+              Code: {{detailedInfo.code}}<br />
+              Name: {{detailedInfo.name}}<br />
+              Latitude: {{detailedInfo.coordinates.latitude}},  Longitude: {{detailedInfo.coordinates.longitude}}<br />
+              Address: {{detailedInfo.address}}<br />   
+              <button ng-click="deleteListing(detailedInfo)">Delete</button>
           </div>
         </div>
       </div>

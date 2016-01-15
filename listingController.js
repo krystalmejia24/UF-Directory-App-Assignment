@@ -2,13 +2,31 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
   function($scope, Listings) {
     $scope.listings = Listings;
     $scope.detailedInfo = undefined;
+    $scope.newItem = undefined;
+    $scope.showAdd = false;   // show add Form if true
+    $scope.showInfo = false;  // show details if true
 
-    /* 
-      Implement these functions in the controller to make your application function 
-      as described in the assignment spec. 
-     */
-    $scope.addListing = function() {};
-    $scope.deleteListing = function(index) {};
-    $scope.showDetails = function(index) {};
+    $scope.addListing = function() {
+      if(!$scope.showAdd){
+        $scope.showAdd = true;
+      }
+      else{
+      $scope.listings.push($scope.newItem);
+      $scope.showAdd = false;
+      $scope.newItem = {code: '', 
+                        name: '', 
+                        address: ''};
+      }
+    };
+
+    $scope.deleteListing = function(listing) {
+      $scope.listings.splice($scope.listings.indexOf(listing), 1);
+      $scope.showInfo = false;
+    };
+
+    $scope.showDetails = function(listing) {
+      $scope.showInfo = true;
+      $scope.detailedInfo = $scope.listings[$scope.listings.indexOf(listing)];
+    };
   }
 ]);
