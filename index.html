@@ -12,11 +12,6 @@
       <div class="row" ng-controller="ListingsController">
         <div class="col-md-6">
           <div class="input-group" id="searchBar">
-            <!-- 
-                Implement a way to filter through listings using the search bar 
-                
-                - I added the ng-model to bind to query filter, and then added the filter to the ng-repeat directive
-              -->
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
             <input type="text" class="form-control" placeholder="Search" ng-model="query">
           </div>
@@ -27,23 +22,11 @@
                 <th>Building Name</th>
               </tr>
               <tr ng-repeat="listing in listings | filter:query" ng-click="showDetails(listing)">
-              <!-- 
-
-                  Fill in the rest of the table:
-                      * populate the rows with the code and name of each listing
-                      * include a way to remove individual listings
-
-                   - I added the ng-repeat directive to the entire table row, and then I set table data per row to equal code and building name
-                   - Added a button at end to show details
-                --> 
                 <td>{{listing.code}}</td>
                 <td>{{listing.name}}</td>
               </tr>
             </table>
           </div>
-          <!-- 
-              
-            -->
           <button ng-show="!showAdd" ng-click="addListing()">Add Listing</button>
             <div class="form" ng-show="showAdd">
               <h2>Add Listing</h2>
@@ -76,13 +59,6 @@
           <div class="jumbotron" ng-show="showInfo">
             <h2>Detailed Information</h2>
             <div>
-            <!-- 
-
-              Include a way to display detailed information about an individual listing:
-                   * consider how to use ng-click within the the table to implement this feature
-                  -added constraint to show info only when clicked
-                  -added delete button
-             -->
               Code: {{detailedInfo.code}}<br />
               Name: {{detailedInfo.name}}<br />
               Latitude: {{detailedInfo.coordinates.latitude}},  Longitude: {{detailedInfo.coordinates.longitude}}<br />
