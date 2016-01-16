@@ -41,16 +41,18 @@ button {
 	border-radius: 10px;
 	background-color: #FA9039;
 	color: #00529b;
-	border-color: #00529b;
+	border: none;
 	font-weight: bold;
 }
 
 button[disabled]{
-	background-color: #f7ba80;
+	background-color: #f0ba80;
+	background-color: #f0ba80;
+	border: none;
 }
 
 button:hover {
-	background-color: #f7ba80;
+	background-color: #f0ba80;
 }
 
 div.form{
