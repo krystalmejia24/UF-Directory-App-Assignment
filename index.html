@@ -32,23 +32,23 @@
               <h2>Add Listing</h2>
               <form name="listingForm">
                 <p>
-                  Code: &nbsp &nbsp
+                  <label>Code:</label>&nbsp &nbsp &nbsp
                   <input type="text" placeholder="Code" name="code" ng-model="newItem.code" required/>
                   <span class="required" ng-show="!listingForm.code.$valid">*Required</span>
                 </p>
                 <p>
-                  Name: &nbsp &nbsp
+                  <label>Name:</label>&nbsp &nbsp&nbsp
                   <input type="text" placeholder="Name" name="name" ng-model="newItem.name" required/>
                   <span class="required" ng-show="!listingForm.name.$valid">*Required</span>
                 </p>
                 <p>
-                  Latitude: 
-                  <input type="text" placeholder="Latitude" ng-model="newItem.coordinates.longitude"/>
-                  &nbsp Longitude: 
+                  <label>Latitude:</label>
+                  <input type="text" placeholder="Latitude" ng-model="newItem.coordinates.latitude"/>
+                  <label>Longitude:</label>
                   <input type="text" placeholder="Longitude" ng-model="newItem.coordinates.longitude"/>
                 </p>
                 <p>
-                  Address: 
+                  <label>Address:</label>
                   <input type="text" placeholder="Address" ng-model="newItem.address"/>
                 </p>
                 <button ng-disabled="!listingForm.$valid" ng-click="addListing()">Save</button>

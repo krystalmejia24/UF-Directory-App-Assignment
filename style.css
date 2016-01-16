@@ -60,13 +60,8 @@ div.form{
 	margin-top: 15px;
 }
 
-form p {
-	font-weight: bold;
-}
-
 span.required {
 	color: red;
 	font-size: 10px;
-	font-weight: lighter;
 	line-height: -5px;
 }
