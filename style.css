@@ -36,9 +36,13 @@ tr:nth-child(odd) td{
 
 button {
 	margin-top: 15px;
+	padding: 5px 10px;
+	width: 100px;
 	border-radius: 10px;
-	background-color: orange;
+	background-color: #FA9039;
 	color: #00529b;
+	border-color: #00529b;
+	font-weight: bold;
 }
 
 button[disabled]{

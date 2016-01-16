@@ -51,7 +51,8 @@
                   Address: 
                   <input type="text" placeholder="Address" ng-model="newItem.address"/>
                 </p>
-                <button ng-disabled="!listingForm.$valid" ng-click="addListing()">Add</button>
+                <button ng-disabled="!listingForm.$valid" ng-click="addListing()">Save</button>
+                <button style="float: right;" ng-click="cancel()">Cancel</button>
               </form>
             </div>
         </div>

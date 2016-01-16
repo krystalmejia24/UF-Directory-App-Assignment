@@ -7,9 +7,11 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.showInfo = false;  // show details if true
 
     $scope.addListing = function() {
+      // button to show the add form
       if(!$scope.showAdd){
         $scope.showAdd = true;
       }
+      // save the added listing
       else{
       $scope.listings.push($scope.newItem);
       $scope.showAdd = false;
@@ -27,6 +29,13 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.showDetails = function(listing) {
       $scope.showInfo = true;
       $scope.detailedInfo = $scope.listings[$scope.listings.indexOf(listing)];
+    };
+
+    $scope.cancel = function() {
+      $scope.showAdd = false;
+      $scope.newItem = {code: '',
+                        name: '',
+                        address: ''};
     };
   }
 ]);
